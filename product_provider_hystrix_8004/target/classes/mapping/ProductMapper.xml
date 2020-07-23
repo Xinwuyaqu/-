@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenpeng.springcloud.mapper.ProductMapper">
+    <select id="findById" resultType="com.chenpeng.springcloud.entity.Product" parameterType="long">
+        select * from product WHERE id=#{id} ;
+    </select>
+    <select id="findAll" resultType="com.chenpeng.springcloud.entity.Product">
+        SELECT * from product;
+    </select>
+    <insert id="create" parameterType="com.chenpeng.springcloud.entity.Product">
+        INSERT INTO product(id,productName,productDesc) VALUES (#{id},#{productName},database()) ;
+    </insert>
+    <select id="getRepertory" resultType="int" parameterType="long">
+        SELECT number from product WHERE id=#{id} ;
+    </select>
+    <update id="updateRepertory"  parameterType="long">
+        UPDATE product SET number = number + 10 WHERE id=#{id} ;
+    </update>
+</mapper>
