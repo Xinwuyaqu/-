@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: server-zuul-8080
+zuul:
+  routes:
+    product-service:
+      path: /zuul-product/**   #这里是映射路径
+#      url: http://localhost:8004/product  #映射路径对应的实际url
+      serviceId: product-provider
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
