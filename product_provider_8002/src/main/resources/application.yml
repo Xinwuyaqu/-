@@ -1,0 +1,37 @@
+server:
+  port: 8002
+mybatis:
+  mapper-locations: # 所有的mapper映射文件
+    - classpath:mapping/*.xml
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 配置当前要使用的数据源的操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver # 配置MySQL的驱动程序类
+    url: jdbc:mysql://localhost:3306/springcloud02?serverTimezone=GMT%2B8 # 数据库连接地址
+    username: root # 数据库用户名
+    password: a12345678
+  application:
+    name: product-provider
+#  security:
+#    user:
+#      name: admin
+#      password: 123456
+#      roles: -USER #授权用户
+
+logging:
+  level:
+    com.chenpeng.springcloud.mapper: debug
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/, http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: product-provider-8002
+    prefer-ip-address: true
+
+info:
+  app.name: microservice-provider-product-8002
+  company.name: chenpeng
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
